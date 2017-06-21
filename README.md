@@ -1,15 +1,15 @@
-#SKIMS:
+# SKIMS:
 
 #ID: 
 
 #Different mass bin for ID / ISO efficiencies
 
-# Data
+#Data
 
 ./skimTree /eos/cms/store/group/phys_muon/hbrun/dataCommissioning/checkFirstData/TnPTree_Express_Run2017B_296966_to_297101.root  /eos/cms/store/group/phys_muon/fernanpe/checkFirstData/TnPTree_Express_Run2017B_296966_to_297101_skimmedID.root -r "all" -k "HighPt Medium PF TMOST Tight2012 Track_HP abseta combRelIsoPF04dBeta dB dzPV eta mass pair_newTuneP_mass pair_newTuneP_probe_pt pair_probeMultiplicity pt relTkIso tag_IsoMu24 tag_combRelIsoPF04dBeta tag_nVertices tag_pt tag_instLumi tkHitFract TM numberOfMatchedStations tkValidHits tkExpHitIn tkExpHitOut tkPixelLay tkTrackerLay weight" -c "((pt > 20 || pair_newTuneP_probe_pt >20) && mass > 70 && mass < 130.1  && tag_combRelIsoPF04dBeta < 0.2 && tag_combRelIsoPF04dBeta> -0.5 && tag_pt > 26 && tag_IsoMu24==1 && abseta <2.401 && pair_probeMultiplicity == 1)"
 
 
-# MC:
+#MC:
 
 ./skimTree /eos/cms/store/group/phys_muon/hbrun/dataCommissioning/checkFirstData/MC_902_DY.root /eos/cms/store/group/phys_muon/fernanpe/checkFirstData/MC_902_DY_skimmedID.root -r "all" -k "HighPt Medium PF TMOST Tight2012 Track_HP abseta combRelIsoPF04dBeta dB dzPV eta mass pair_newTuneP_mass pair_newTuneP_probe_pt pair_probeMultiplicity pt relTkIso tag_IsoMu24 tag_combRelIsoPF04dBeta tag_nVertices tag_pt tag_instLumi tkHitFract TM numberOfMatchedStations tkValidHits tkExpHitIn tkExpHitOut tkPixelLay tkTrackerLay weight" -c "((pt > 20 || pair_newTuneP_probe_pt >20) && mass > 70 && mass < 130.1  && tag_combRelIsoPF04dBeta < 0.2 && tag_combRelIsoPF04dBeta> -0.5 && tag_pt > 26 && tag_IsoMu24==1 && abseta <2.401 && pair_probeMultiplicity == 1)"
 
@@ -17,20 +17,20 @@
 
 #ISO:
 
-# Data
+#Data
 
 ./skimTree /eos/cms/store/group/phys_muon/hbrun/dataCommissioning/checkFirstData/TnPTree_Express_Run2017B_296966_to_297101.root  /eos/cms/store/group/phys_muon/fernanpe/checkFirstData/TnPTree_Express_Run2017B_296966_to_297101_skimmedISO.root -r "all" -k "HighPt Medium PF TMOST Tight2012 Track_HP abseta combRelIsoPF04dBeta dB dzPV eta mass pair_newTuneP_mass pair_newTuneP_probe_pt pair_probeMultiplicity pt relTkIso tag_IsoMu24 tag_combRelIsoPF04dBeta tag_nVertices tag_pt tag_instLumi tkHitFract TM numberOfMatchedStations tkValidHits tkExpHitIn tkExpHitOut tkPixelLay tkTrackerLay weight" -c "((pt > 20 || pair_newTuneP_probe_pt >20) && mass > 77 && mass < 130.1  && tag_combRelIsoPF04dBeta < 0.2 && tag_combRelIsoPF04dBeta> -0.5 && tag_pt > 26 && tag_IsoMu24==1 && abseta <2.401 && pair_probeMultiplicity == 1)"
 
 
-# MC 
+#MC 
 
 ./skimTree /eos/cms/store/group/phys_muon/hbrun/dataCommissioning/checkFirstData/MC_902_DY.root /eos/cms/store/group/phys_muon/fernanpe/checkFirstData/MC_902_DY_skimmedISO.root -r "all" -k "HighPt Medium PF TMOST Tight2012 Track_HP abseta combRelIsoPF04dBeta dB dzPV eta mass pair_newTuneP_mass pair_newTuneP_probe_pt pair_probeMultiplicity pt relTkIso tag_IsoMu24 tag_combRelIsoPF04dBeta tag_nVertices tag_pt tag_instLumi tkHitFract TM numberOfMatchedStations tkValidHits tkExpHitIn tkExpHitOut tkPixelLay tkTrackerLay weight" -c "((pt > 20 || pair_newTuneP_probe_pt >20) && mass > 77 && mass < 130.1  && tag_combRelIsoPF04dBeta < 0.2 && tag_combRelIsoPF04dBeta> -0.5 && tag_pt > 26 && tag_IsoMu24==1 && abseta <2.401 && pair_probeMultiplicity == 1)"
 
 
 
-#PU REWEIGHT
+# PU REWEIGHT
 
-# ./addNVtx “data” “mc” output.root
+#./addNVtx “data” “mc” output.root
 
 #ID:
 
@@ -42,7 +42,7 @@
 
 
 
-#Efficiencies ID
+# Efficiencies ID
 
 #Data:
 
@@ -80,7 +80,7 @@ cmsRun fitMuon2.py ID mediumid gentrack mc_all mcid vtx default 2 > kk.txt
 
 
 
-#EFFICIENCIES ISO
+# EFFICIENCIES ISO
 
 #Data:
 
@@ -101,7 +101,7 @@ cmsRun fitMuon2.py ISO tightiso mediumid mc_all mciso vtx default 2 > kk.txt
 
 
 
-# make_ratioplots
+# RatioPlots
 
 python make_ratioplots.py ID DATA_dataid MC_mcid
 python make_ratioplots.py ISO DATA_dataiso MC_mciso
