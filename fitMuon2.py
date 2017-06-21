@@ -27,10 +27,6 @@ def FillNumDen(num, den):
         process.TnP_MuonID.Expressions.Medium_noIPVar= cms.vstring("Medium_noIPVar", "Medium==1", "Medium")
         process.TnP_MuonID.Cuts.Medium_noIP= cms.vstring("Medium_noIP", "Medium_noIPVar", "0.5")
 
-#    elif num == "mediumid":
-#        process.TnP_MuonID.Categories.Medium  = cms.vstring("Medium Id. Muon (ICHEP version)", "dummy[pass=1,fail=0]")
-#        process.TnP_MuonID.Expressions.Medium_noIPVar= cms.vstring("Medium_noIPVar", "Medium==1", "Medium")
-#        process.TnP_MuonID.Cuts.Medium_noIP= cms.vstring("Medium_noIP", "Medium_noIPVar", "0.5")
     elif num == "tightid":
         process.TnP_MuonID.Variables.dzPV  = cms.vstring("dzPV", "-1000", "1000", "")
         process.TnP_MuonID.Categories.Tight2012 = cms.vstring("Tight Id. Muon", "dummy[pass=1,fail=0]")
@@ -346,10 +342,11 @@ if sample == "mciso":
         )  
 
 
+# Comment this for MC in vtx bins
 if scenario == "mc_all":
     print "Including the weight for MC"
-#    process.TnP_MuonID.WeightVariable = cms.string("weight")
-#    process.TnP_MuonID.Variables.weight = cms.vstring("weight","0","10","")
+    process.TnP_MuonID.WeightVariable = cms.string("weight")
+    process.TnP_MuonID.Variables.weight = cms.vstring("weight","0","10","")
 
 
 BIN = cms.PSet(
