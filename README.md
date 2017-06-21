@@ -47,15 +47,23 @@
 #Data:
 
 cmsRun fitMuon2.py ID tightid gentrack data_all dataid pt default 2 > kk.txt
+
 cmsRun fitMuon2.py ID tightid gentrack data_all dataid eta default 2 > kk.txt
+
 cmsRun fitMuon2.py ID tightid gentrack data_all dataid vtx default 2 > kk.txt
 
+
 cmsRun fitMuon2.py ID looseid gentrack data_all dataid pt default 2 > kk.txt
+
 cmsRun fitMuon2.py ID looseid gentrack data_all dataid eta default 2 > kk.txt
+
 cmsRun fitMuon2.py ID looseid gentrack data_all dataid vtx default 2 > kk.txt
 
+
 cmsRun fitMuon2.py ID mediumid gentrack data_all dataid pt default 2 > kk.txt
+
 cmsRun fitMuon2.py ID mediumid gentrack data_all dataid eta default 2 > kk.txt
+
 cmsRun fitMuon2.py ID mediumid gentrack data_all dataid vtx default 2 > kk.txt
 
 
@@ -64,18 +72,26 @@ cmsRun fitMuon2.py ID mediumid gentrack data_all dataid vtx default 2 > kk.txt
 #MC: 
 
 cmsRun fitMuon2.py ID tightid gentrack mc_all mcid pt default 2 > kk.txt
+
 cmsRun fitMuon2.py ID tightid gentrack mc_all mcid eta default 2 > kk.txt
+
 cmsRun fitMuon2.py ID looseid gentrack mc_all mcid pt default 2 > kk.txt
+
 cmsRun fitMuon2.py ID looseid gentrack mc_all mcid eta default 2 > kk.txt
 
+
 cmsRun fitMuon2.py ID mediumid gentrack mc_all mcid pt default 2 > kk.txt
+
 cmsRun fitMuon2.py ID mediumid gentrack mc_all mcid eta default 2 > kk.txt
 
 
 
 #quitar weight
+
 cmsRun fitMuon2.py ID tightid gentrack mc_all mcid vtx default 2 > kk.txt
+
 cmsRun fitMuon2.py ID looseid gentrack mc_all mcid vtx default 2 > kk.txt
+
 cmsRun fitMuon2.py ID mediumid gentrack mc_all mcid vtx default 2 > kk.txt
 
 
@@ -85,15 +101,22 @@ cmsRun fitMuon2.py ID mediumid gentrack mc_all mcid vtx default 2 > kk.txt
 #Data:
 
 cmsRun fitMuon2.py ISO tightiso mediumid data_all dataiso pt default 2 > kk.txt
+
 cmsRun fitMuon2.py ISO tightiso mediumid data_all dataiso eta default 2 > kk.txt
+
 cmsRun fitMuon2.py ISO tightiso mediumid data_all dataiso vtx default 2 > kk.txt
+
+
 
 #MC:
 
 cmsRun fitMuon2.py ISO tightiso mediumid mc_all mciso pt default 2 > kk.txt
+
 cmsRun fitMuon2.py ISO tightiso mediumid mc_all mciso eta default 2 > kk.txt
 
+
 #quitar weight
+
 cmsRun fitMuon2.py ISO tightiso mediumid mc_all mciso vtx default 2 > kk.txt
 
 
@@ -104,6 +127,7 @@ cmsRun fitMuon2.py ISO tightiso mediumid mc_all mciso vtx default 2 > kk.txt
 # RatioPlots
 
 python make_ratioplots.py ID DATA_dataid MC_mcid
+
 python make_ratioplots.py ISO DATA_dataiso MC_mciso
 
 
@@ -112,7 +136,11 @@ python make_ratioplots.py ISO DATA_dataiso MC_mciso
 # FitPlots
 
 python retrieve_plots.py ID DATA_dataid
+
 python retrieve_plots.py ID MC_mcid
+
 python retrieve_plots.py ISO DATA_dataiso
+
 python retrieve_plots.py ISO MC_mciso
+
 
