@@ -27,6 +27,10 @@ def FillNumDen(num, den):
         process.TnP_MuonID.Expressions.Medium_noIPVar= cms.vstring("Medium_noIPVar", "Medium==1", "Medium")
         process.TnP_MuonID.Cuts.Medium_noIP= cms.vstring("Medium_noIP", "Medium_noIPVar", "0.5")
 
+#    elif num == "mediumid":
+#        process.TnP_MuonID.Categories.Medium  = cms.vstring("Medium Id. Muon (ICHEP version)", "dummy[pass=1,fail=0]")
+#        process.TnP_MuonID.Expressions.Medium_noIPVar= cms.vstring("Medium_noIPVar", "Medium==1", "Medium")
+#        process.TnP_MuonID.Cuts.Medium_noIP= cms.vstring("Medium_noIP", "Medium_noIPVar", "0.5")
     elif num == "tightid":
         process.TnP_MuonID.Variables.dzPV  = cms.vstring("dzPV", "-1000", "1000", "")
         process.TnP_MuonID.Categories.Tight2012 = cms.vstring("Tight Id. Muon", "dummy[pass=1,fail=0]")
@@ -125,11 +129,12 @@ def FillBin(par):
         DEN.pair_newTuneP_probe_pt = cms.vdouble(20, 25, 30, 40, 50, 55, 60, 120) 
         DEN.abseta = cms.vdouble( 0., 0.9, 1.2, 2.1, 2.4)
     elif par == 'newpt':
-        DEN.pair_newTuneP_probe_pt = cms.vdouble(21, 25, 30, 40, 50, 55, 60, 120, 200)
+        DEN.pair_newTuneP_probe_pt = cms.vdouble(21, 25, 30, 40, 50, 60, 120)
     elif par == 'eta':
         DEN.eta = cms.vdouble(-2.4, -2.1, -1.6, -1.2, -0.9, -0.3, -0.2, 0.2, 0.3, 0.9, 1.2, 1.6, 2.1, 2.4)
     elif par == 'pt':
-        DEN.pt = cms.vdouble(20, 25, 30, 40, 50, 60, 120, 200)
+#        DEN.pt = cms.vdouble(20, 25, 30, 40, 50, 60, 120, 200)
+        DEN.pt = cms.vdouble(20, 25, 30, 40, 50, 60, 120)
     elif par == 'pair_deltaR':
         DEN.pair_deltaR = cms.vdouble(0., 0.4, 0.8, 1.2, 1.6, 2.0, 2.4, 2.8, 3.2, 5.0)
     elif par == 'tag_instLumi':
@@ -139,7 +144,9 @@ def FillBin(par):
         DEN.abseta = cms.vdouble( 0., 0.9, 1.2, 2.1, 2.4)
     elif par == 'vtx':
         print 'I filled it also asdf'
-        DEN.tag_nVertices = cms.vdouble(10.5,14.5,18.5,22.5,26.5,30.5,34.5,38.5,42.5,46.5,50.5,54.5)
+# first_single       DEN.tag_nVertices = cms.vdouble(10.5,14.5,18.5,22.5,26.5,30.5,34.5,50.5)
+#        DEN.tag_nVertices = cms.vdouble(10.5,14.5,18.5,22.5,26.5,30.5,34.5,38.5,42.5,46.5,50.5,54.5)
+        DEN.tag_nVertices = cms.vdouble(6.5,10.5,14.5,18.5,22.5,26.5,30.5,34.5,50.5)
         #DEN.tag_nVertices = cms.vdouble(0.5,4.5,8.5,12.5,16.5,20.5,24.5,28.5,32.5,38.5,42.5,46.5,50.5,54.5)   
  #Selections
     if den == "gentrack": pass
@@ -295,7 +302,7 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
 if sample == "dataid":                                                                                                                  
     process.TnP_MuonID = Template.clone(                                                                                                 
        InputFileNames = cms.vstring(                                                                                                    
-            '/eos/cms/store/group/phys_muon/fernanpe/checkFirstData/TnPTree_Express_Run2017B_296966_to_297101_skimmedID.root'
+            '/eos/cms/store/group/phys_muon/fernanpe/eff170706/TnPTree_SingleMuon_Run2017Bv1_297031_to_297723_DCSOnly_skimmedID.root'
             ),                                                                                                                           
         InputTreeName = cms.string("fitter_tree"),                                                                                       
         InputDirectoryName = cms.string("tpTree"),                                                                                       
@@ -307,7 +314,7 @@ if sample == "dataid":
 if sample == "mcid":                                                                                                                  
     process.TnP_MuonID = Template.clone(                                                                                                 
        InputFileNames = cms.vstring(                                                                                                    
-            '/eos/cms/store/group/phys_muon/fernanpe/checkFirstData/MC_902_DY_skimmedID_weighted.root'
+            '/eos/cms/store/group/phys_muon/fernanpe/eff170706/TnPTree_PhaseISpring17_DYMadgraph_M50toInf_skimmedID_weighted.root'
             ),                                                                                                                           
         InputTreeName = cms.string("fitter_tree"),                                                                                       
         InputDirectoryName = cms.string("tpTree"),                                                                                       
@@ -321,7 +328,7 @@ if sample == "mcid":
 if sample == "dataiso":                                                                                                                  
     process.TnP_MuonID = Template.clone(                                                                                                 
        InputFileNames = cms.vstring(                                                                                                    
-            '/eos/cms/store/group/phys_muon/fernanpe/checkFirstData/TnPTree_Express_Run2017B_296966_to_297101_skimmedISO.root'
+            '/eos/cms/store/group/phys_muon/fernanpe/eff170706/TnPTree_SingleMuon_Run2017Bv1_297031_to_297723_DCSOnly_skimmedISO.root'
             ),                                                                                                                           
         InputTreeName = cms.string("fitter_tree"),                                                                                       
         InputDirectoryName = cms.string("tpTree"),                                                                                       
@@ -333,7 +340,7 @@ if sample == "dataiso":
 if sample == "mciso":                                                                                                                  
     process.TnP_MuonID = Template.clone(                                                                                                 
        InputFileNames = cms.vstring(                                                                                                    
-            '/eos/cms/store/group/phys_muon/fernanpe/checkFirstData/MC_902_DY_skimmedISO_weighted.root'
+            '/eos/cms/store/group/phys_muon/fernanpe/eff170706/TnPTree_PhaseISpring17_DYMadgraph_M50toInf_skimmedISO_weighted.root'
             ),                                                                                                                           
         InputTreeName = cms.string("fitter_tree"),                                                                                       
         InputDirectoryName = cms.string("tpTree"),                                                                                       
@@ -342,7 +349,6 @@ if sample == "mciso":
         )  
 
 
-# Comment this for MC in vtx bins
 if scenario == "mc_all":
     print "Including the weight for MC"
     process.TnP_MuonID.WeightVariable = cms.string("weight")
