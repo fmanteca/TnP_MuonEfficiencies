@@ -44,9 +44,9 @@ import pickle
 #------------------------------------------------------------------------------------------------
 
 
-GetEffJSON_DATA = 0
+GetEffJSON_DATA = 1
 GetEffJSON_MC = 0
-GetSFJSON = 1
+GetSFJSON = 0
 
 DEBUG = 0
 
