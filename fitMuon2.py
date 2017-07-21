@@ -129,12 +129,13 @@ def FillBin(par):
         DEN.pair_newTuneP_probe_pt = cms.vdouble(20, 25, 30, 40, 50, 55, 60, 120) 
         DEN.abseta = cms.vdouble( 0., 0.9, 1.2, 2.1, 2.4)
     elif par == 'newpt':
-        DEN.pair_newTuneP_probe_pt = cms.vdouble(21, 25, 30, 40, 50, 55, 60, 120,200)
+#        DEN.pair_newTuneP_probe_pt = cms.vdouble(21, 25, 30, 40, 50, 55, 60, 120,200)
+        DEN.pair_newTuneP_probe_pt = cms.vdouble(21, 25, 30, 40, 50, 60, 120)
     elif par == 'eta':
         DEN.eta = cms.vdouble(-2.4, -2.1, -1.6, -1.2, -0.9, -0.3, -0.2, 0.2, 0.3, 0.9, 1.2, 1.6, 2.1, 2.4)
     elif par == 'pt':
-#        DEN.pt = cms.vdouble(20, 25, 30, 40, 50, 60, 120, 200)
-        DEN.pt = cms.vdouble(20, 25, 30, 40, 50, 55, 60, 120,200)
+        DEN.pt = cms.vdouble(20, 25, 30, 40, 50, 60, 120)
+#        DEN.pt = cms.vdouble(20, 25, 30, 40, 50, 55, 60, 120,200)
     elif par == 'pair_deltaR':
         DEN.pair_deltaR = cms.vdouble(0., 0.4, 0.8, 1.2, 1.6, 2.0, 2.4, 2.8, 3.2, 5.0)
     elif par == 'tag_instLumi':
@@ -146,8 +147,8 @@ def FillBin(par):
         print 'I filled it also asdf'
 # first_single       DEN.tag_nVertices = cms.vdouble(10.5,14.5,18.5,22.5,26.5,30.5,34.5,50.5)
 #        DEN.tag_nVertices = cms.vdouble(10.5,14.5,18.5,22.5,26.5,30.5,34.5,38.5,42.5,46.5,50.5,54.5)
-#        DEN.tag_nVertices = cms.vdouble(6.5,10.5,14.5,18.5,22.5,26.5,30.5,34.5,50.5)
-        DEN.tag_nVertices = cms.vdouble(0.5,4.5,8.5,12.5,16.5,20.5,24.5,28.5,32.5,38.5,42.5,46.5,50.5,54.5)   
+        DEN.tag_nVertices = cms.vdouble(6.5,10.5,14.5,18.5,22.5,26.5,30.5,34.5,50.5)
+#        DEN.tag_nVertices = cms.vdouble(0.5,4.5,8.5,12.5,16.5,20.5,24.5,28.5,32.5,38.5,42.5,46.5,50.5,54.5)   
  #Selections
     if den == "gentrack": pass
     elif den == "looseid": DEN.PF = cms.vstring("pass")
@@ -433,18 +434,23 @@ for ID, ALLBINS in ID_BINS:
                 print 'den is', den 
                 print 'num_ is ', num
                 if den == "highptid" or num == "highptid":
-                    if (len(DEN.pair_newTuneP_probe_pt)==9):
-                        shape = cms.vstring("vpvPlusCMS","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2","*pt_bin6*","vpvPlusCMSbeta0p2","*pt_bin7*","vpvPlusCMS")
+                    #if (len(DEN.pair_newTuneP_probe_pt)==9):
+                    #    shape = cms.vstring("vpvPlusCMS","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2","*pt_bin6*","vpvPlusCMSbeta0p2","*pt_bin7*","vpvPlusCMS")
 #                    if (len(DEN.pair_newTuneP_probe_pt)==8):
 #                        shape = cms.vstring("vpvPlusCMS","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2","*pt_bin6*","vpvPlusCMSbeta0p2")
-                    if (len(DEN.pair_newTuneP_probe_pt)==8):
-                        shape = cms.vstring("vpvPlusCMS","*pt_bin2*","vpvPlusCMSbeta0p2","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2","*pt_bin6*","vpvPlusCMSbeta0p2")
+#2016                    if (len(DEN.pair_newTuneP_probe_pt)==9):
+#                        shape = cms.vstring("vpvPlusCMS","*pt_bin2*","vpvPlusCMSbeta0p2","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2","*pt_bin6*","vpvPlusCMSbeta0p2", "*pt_bin7*","vpvPlusCMSbeta0p2","*pt_bin8*","vpvPlusCMSbeta0p2")
+#NEw binning:
+                    if (len(DEN.pair_newTuneP_probe_pt)==7):
+                        shape = cms.vstring("vpvPlusCMS","*pt_bin2*","vpvPlusCMSbeta0p2","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2")
                     if scenario == "mc_all":
-                        if (len(DEN.pair_newTuneP_probe_pt)==8):
-                            shape = cms.vstring("vpvPlusCMSbeta0p2","*pt_bin0*","vpvPlusExpo","*pt_bin1*","vpvPlusExpo","*pt_bin2*","vpvPlusExpo","*pt_bin3*","vpvPlusExpo","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2", "*pt_bin6*","vpvPlusCMSbeta0p2")
+                        if (len(DEN.pair_newTuneP_probe_pt)==7):
+                            shape = cms.vstring("vpvPlusCMSbeta0p2","*pt_bin0*","vpvPlusExpo","*pt_bin1*","vpvPlusExpo","*pt_bin2*","vpvPlusExpo","*pt_bin3*","vpvPlusExpo","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2")
+#2016                        if (len(DEN.pair_newTuneP_probe_pt)==9):
+ #                           shape = cms.vstring("vpvPlusCMSbeta0p2","*pt_bin0*","vpvPlusExpo","*pt_bin1*","vpvPlusExpo","*pt_bin2*","vpvPlusExpo","*pt_bin3*","vpvPlusExpo","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2", "*pt_bin6*","vpvPlusCMSbeta0p2", "*pt_bin7*","vpvPlusCMSbeta0p2", "*pt_bin8*","vpvPlusCMSbeta0p2")
                 else:
-                    if (len(DEN.pt)==8):
-                        shape = cms.vstring("vpvPlusCMS","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2","*pt_bin6*","vpvPlusCMSbeta0p2","*pt_bin7*","vpvPlusCMSbeta0p2")
+                    if (len(DEN.pt)==9):
+                        shape = cms.vstring("vpvPlusCMS","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2","*pt_bin6*","vpvPlusCMSbeta0p2","*pt_bin7*","vpvPlusCMS")
                     if (len(DEN.pt)==7):
                         shape = cms.vstring("vpvPlusCMS","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2")
         elif bgFitFunction == 'CMSshape':
