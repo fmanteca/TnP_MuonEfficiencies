@@ -139,29 +139,32 @@ def FillBin(par):
     '''Sets the values of the bin paramters and the bool selections on the denominators'''
     #Parameter 
     if par == 'newpt_eta':
-        DEN.pair_newTuneP_probe_pt = cms.vdouble(20, 25, 30, 40, 50, 55, 60, 120) 
+        DEN.pair_newTuneP_probe_pt = cms.vdouble(2.0, 2.5,  2.75, 3, 3.25, 3.5, 3.75, 4.0, 4.5, 5.0, 6.0, 8.0, 10.0, 15.0, 20.0, 25.0, 30.0, 40.0, 50.0, 60.0, 120.0, 200.0, 300.0, 500.0, 700.0, 1200.0) 
         DEN.abseta = cms.vdouble( 0., 0.9, 1.2, 2.1, 2.4)
     elif par == 'newpt':
 #        DEN.pair_newTuneP_probe_pt = cms.vdouble(21, 25, 30, 40, 50, 55, 60, 120,200)
-        DEN.pair_newTuneP_probe_pt = cms.vdouble(21, 25, 30, 40, 50, 60, 120)
+#        DEN.pair_newTuneP_probe_pt = cms.vdouble(21, 25, 30, 40, 50, 60, 120)
+        DEN.pair_newTuneP_probe_pt = cms.vdouble(2.0, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75, 4.0, 4.5, 5.0, 6.0, 8.0, 10.0, 15.0, 20.0, 25.0, 30.0, 40.0, 50.0, 60.0, 120.0, 200.0, 300.0, 500.0, 700.0, 1200.0)
     elif par == 'eta':
         DEN.eta = cms.vdouble(-2.4, -2.1, -1.6, -1.2, -0.9, -0.3, -0.2, 0.2, 0.3, 0.9, 1.2, 1.6, 2.1, 2.4)
     elif par == 'pt':
-        DEN.pt = cms.vdouble(20, 25, 30, 40, 50, 60, 120)
-#        DEN.pt = cms.vdouble(20, 25, 30, 40, 50, 55, 60, 120,200)
+#        DEN.pt = cms.vdouble(20, 25, 30, 40, 50, 60, 120)
+#        DEN.pt = cms.vdouble(20, 25, 30, 40, 50, 55, 60, 120,200) DEFAULT
+        DEN.pt = cms.vdouble(2.0, 2.5, 2.75, 3.0, 3.25, 3.5, 3.75, 4.0, 4.5, 5.0, 6.0, 8.0, 10.0, 15.0, 20.0, 25.0, 30.0, 40.0, 50.0, 60.0, 120.0, 200.0, 300.0, 500.0, 700.0, 1200.0)
     elif par == 'pair_deltaR':
         DEN.pair_deltaR = cms.vdouble(0., 0.4, 0.8, 1.2, 1.6, 2.0, 2.4, 2.8, 3.2, 5.0)
     elif par == 'tag_instLumi':
         DEN.tag_instLumi = cms.vdouble(1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600, 2800, 3000, 3200, 3400, 3600, 3800, 4000, 4200, 4400, 4600, 4800, 5000, 5200, 5400, 5600, 5800, 6000, 6200, 6400, 6600, 6800, 7000, 7200, 7400, 7600, 7800, 8000, 8200, 8400, 8600, 8800, 9000, 9200, 9400, 9600, 9800, 10000, 10200, 10400, 10600, 10800, 11000) # for runs BCD 
     elif par == 'pt_eta':
-        DEN.pt = cms.vdouble(20, 25, 30, 40, 50, 60, 120)
+#        DEN.pt = cms.vdouble(20, 25, 30, 40, 50, 60, 120) PRESENTATION 170710: same for newpt_eta
+        DEN.pt = cms.vdouble(2.0, 2.5,  2.75, 3, 3.25, 3.5, 3.75, 4.0, 4.5, 5.0, 6.0, 8.0, 10.0, 15.0, 20.0, 25.0, 30.0, 40.0, 50.0, 60.0, 120.0, 200.0, 300.0, 500.0, 700.0, 1200.0)
         DEN.abseta = cms.vdouble( 0., 0.9, 1.2, 2.1, 2.4)
     elif par == 'vtx':
         print 'I filled it also asdf'
 # first_single       DEN.tag_nVertices = cms.vdouble(10.5,14.5,18.5,22.5,26.5,30.5,34.5,50.5)
-#        DEN.tag_nVertices = cms.vdouble(10.5,14.5,18.5,22.5,26.5,30.5,34.5,38.5,42.5,46.5,50.5,54.5)
-        DEN.tag_nVertices = cms.vdouble(6.5,10.5,14.5,18.5,22.5,26.5,30.5,34.5,50.5)
-#        DEN.tag_nVertices = cms.vdouble(0.5,4.5,8.5,12.5,16.5,20.5,24.5,28.5,32.5,38.5,42.5,46.5,50.5,54.5)   
+        DEN.tag_nVertices = cms.vdouble(0.5,2.5,4.5,6.5,8.5,10.5,12.5,14.5,16.5,18.5,20.5,22.5,24.5,26.5,28.5,30.5,32.5,34.5,36.5,38.5,40.5,42.5,44.5,46.5,48.5,50.5)
+#        DEN.tag_nVertices = cms.vdouble(6.5,10.5,14.5,18.5,22.5,26.5,30.5,34.5,50.5) PRESENTATION 170710
+#         DEN.tag_nVertices = cms.vdouble(0.5, 2.5, 4.5, 6.5, 8.5, 10.5, 12.5, 14.5, 16.5, 18.5, 20.5, 22.5, 24.5, 26.5, 28.5, 30.5, 32.5, 34.5, 36.5, 38.5, 40.5, 42.5, 44.5, 46.5, 48.5, 50.5)   
  #Selections
     if den == "gentrack": pass
     elif den == "looseid": DEN.PF = cms.vstring("pass")
@@ -320,7 +323,10 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
 if sample == "dataid":                                                                                                                  
     process.TnP_MuonID = Template.clone(                                                                                                 
        InputFileNames = cms.vstring(                                                                                                    
-            '/eos/cms/store/group/phys_muon/fernanpe/eff170712/TnPTree_SingleMuon_Run2017Bv1_297031_to_297723_DCSOnly_skimmedID.root'
+            '/eos/cms/store/group/phys_muon/fernanpe/eff170724_not20/TnPTree_SingleMuon_Run2017Bv1_294927_to_299042_GoldenJSON_skimmedID.root',
+            '/eos/cms/store/group/phys_muon/fernanpe/eff170724_not20/TnPTree_SingleMuon_Run2017Bv2_294927_to_299042_GoldenJSON_skimmedID.root',
+            '/eos/cms/store/group/phys_muon/fernanpe/eff2017C/TnPTree_SingleMuon_Run2017C_PromptReco-v1_skimmedID.root',
+            '/eos/cms/store/group/phys_muon/fernanpe/eff2017C/TnPTree_SingleMuon_Run2017C_PromptReco-v2_skimmedID.root'
             ),                                                                                                                           
         InputTreeName = cms.string("fitter_tree"),                                                                                       
         InputDirectoryName = cms.string("tpTree"),                                                                                       
@@ -331,8 +337,8 @@ if sample == "dataid":
 
 if sample == "mcid":                                                                                                                  
     process.TnP_MuonID = Template.clone(                                                                                                 
-       InputFileNames = cms.vstring(                                                                                                    
-            '/eos/cms/store/group/phys_muon/fernanpe/eff170712/TnPTree_PhaseISpring17_DYMadgraph_M50toInf_skimmedID_weighted.root'
+       InputFileNames = cms.vstring(                            
+            '/eos/cms/store/group/phys_muon/fernanpe/eff2017C/TnPTree_PhaseISpring17_DYMadgraph_M50toInf_skimmedID_weighted.root'
             ),                                                                                                                           
         InputTreeName = cms.string("fitter_tree"),                                                                                       
         InputDirectoryName = cms.string("tpTree"),                                                                                       
@@ -345,8 +351,11 @@ if sample == "mcid":
 
 if sample == "dataiso":                                                                                                                  
     process.TnP_MuonID = Template.clone(                                                                                                 
-       InputFileNames = cms.vstring(                                                                                                    
-            '/eos/cms/store/group/phys_muon/fernanpe/eff170712/TnPTree_SingleMuon_Run2017Bv1_297031_to_297723_DCSOnly_skimmedISO.root'
+       InputFileNames = cms.vstring(                            
+            '/eos/cms/store/group/phys_muon/fernanpe/eff170724_not20/TnPTree_SingleMuon_Run2017Bv1_294927_to_299042_GoldenJSON_skimmedISO.root',
+            '/eos/cms/store/group/phys_muon/fernanpe/eff170724_not20/TnPTree_SingleMuon_Run2017Bv2_294927_to_299042_GoldenJSON_skimmedISO.root',
+            '/eos/cms/store/group/phys_muon/fernanpe/eff2017C/TnPTree_SingleMuon_Run2017C_PromptReco-v1_skimmedISO.root',
+            '/eos/cms/store/group/phys_muon/fernanpe/eff2017C/TnPTree_SingleMuon_Run2017C_PromptReco-v2_skimmedISO.root'
             ),                                                                                                                           
         InputTreeName = cms.string("fitter_tree"),                                                                                       
         InputDirectoryName = cms.string("tpTree"),                                                                                       
@@ -357,8 +366,8 @@ if sample == "dataiso":
 
 if sample == "mciso":                                                                                                                  
     process.TnP_MuonID = Template.clone(                                                                                                 
-       InputFileNames = cms.vstring(                                                                                                    
-            '/eos/cms/store/group/phys_muon/fernanpe/eff170712/TnPTree_PhaseISpring17_DYMadgraph_M50toInf_skimmedISO_weighted.root'
+       InputFileNames = cms.vstring(                            
+            '/eos/cms/store/group/phys_muon/fernanpe/eff2017C/TnPTree_PhaseISpring17_DYMadgraph_M50toInf_skimmedISO_weighted.root'
             ),                                                                                                                           
         InputTreeName = cms.string("fitter_tree"),                                                                                       
         InputDirectoryName = cms.string("tpTree"),                                                                                       
@@ -378,7 +387,7 @@ BIN = cms.PSet(
 
 print 'debug1'
 Num_dic = {'looseid':'LooseID','mediumid':'MediumID','tightid':'TightID','tightidhww':'TightIDHWW','puppiIso':'PuppiIso','puppiIsoNoLep':'PuppiIsoNoLep','combpuppiIso':'combPuppiIso', 'muCleanerIII':'MuonCleanerIII', 'muCleanerIV':'MuonCleanerIV', 'highptid':'HighPtID','looseiso':'LooseRelIso','tightiso':'TightRelIso','tklooseiso':'LooseRelTkIso'}
-Den_dic = {'gentrack':'genTracks','looseid':'LooseID','mediumid':'MediumID','tightid':'tightidhww':'TightIDHWW','TightIDandIPCut','highptid':'HighPtIDandIPCut'}
+Den_dic = {'gentrack':'genTracks','looseid':'LooseID','mediumid':'MediumID','tightid':'TightIDandIPCut','tightidhww':'TightIDHWW','highptid':'HighPtIDandIPCut'}
 Sel_dic = {'looseid':'Loose_noIP','mediumid':'Medium_noIP','tightid':'Tight2012_zIPCut','tightidhww':'Tight2012_zIPdBCut','puppiIso':'puppiIsoCut', 'puppiIsoNoLep':'puppiIsoNoLepCut','combpuppiIso':'combpuppiIsoCut','muCleanerIII':'TM_cleanMuonIIICut', 'muCleanerIV':'TM_cleanMuonIVCut', 'highptid':'HighPt_zIPCut','looseiso':'LooseIso4','tightiso':'TightIso4','tklooseiso':'LooseTkIso3'}
 
 #Par_dic = {'eta':'eta', 'pt':}
@@ -450,6 +459,7 @@ for ID, ALLBINS in ID_BINS:
             if ('pt' in X):
                 print 'den is', den 
                 print 'num_ is ', num
+                print 'test', len(DEN.pt)
                 if den == "highptid" or num == "highptid":
                     #if (len(DEN.pair_newTuneP_probe_pt)==9):
                     #    shape = cms.vstring("vpvPlusCMS","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2","*pt_bin6*","vpvPlusCMSbeta0p2","*pt_bin7*","vpvPlusCMS")
@@ -458,16 +468,27 @@ for ID, ALLBINS in ID_BINS:
 #2016                    if (len(DEN.pair_newTuneP_probe_pt)==9):
 #                        shape = cms.vstring("vpvPlusCMS","*pt_bin2*","vpvPlusCMSbeta0p2","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2","*pt_bin6*","vpvPlusCMSbeta0p2", "*pt_bin7*","vpvPlusCMSbeta0p2","*pt_bin8*","vpvPlusCMSbeta0p2")
 #NEw binning:
-                    if (len(DEN.pair_newTuneP_probe_pt)==7):
-                        shape = cms.vstring("vpvPlusCMS","*pt_bin2*","vpvPlusCMSbeta0p2","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2")
+                    # if (len(DEN.pair_newTuneP_probe_pt)==7):
+                    #     shape = cms.vstring("vpvPlusCMS","*pt_bin2*","vpvPlusCMSbeta0p2","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2")
+                    # if scenario == "mc_all":
+                    #     if (len(DEN.pair_newTuneP_probe_pt)==7):
+                    #         shape = cms.vstring("vpvPlusCMSbeta0p2","*pt_bin0*","vpvPlusExpo","*pt_bin1*","vpvPlusExpo","*pt_bin2*","vpvPlusExpo","*pt_bin3*","vpvPlusExpo","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2") PRESENTATION 170719
+
+                    if (len(DEN.pair_newTuneP_probe_pt)==26):
+                        shape = cms.vstring("vpvPlusCMS","*pt_bin2*","vpvPlusCMSbeta0p2","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2","*pt_bin6*","vpvPlusCMSbeta0p2","*pt_bin7*","vpvPlusCMSbeta0p2","*pt_bin8*","vpvPlusCMSbeta0p2","*pt_bin9*","vpvPlusCMSbeta0p2","*pt_bin10*","vpvPlusCMSbeta0p2","*pt_bin11*","vpvPlusCMSbeta0p2","*pt_bin12*","vpvPlusCMSbeta0p2","*pt_bin13*","vpvPlusCMSbeta0p2","*pt_bin14*","vpvPlusCMSbeta0p2","*pt_bin15*","vpvPlusCMSbeta0p2","*pt_bin16*","vpvPlusCMSbeta0p2","*pt_bin17*","vpvPlusCMSbeta0p2","*pt_bin18*","vpvPlusCMSbeta0p2","*pt_bin19*","vpvPlusCMSbeta0p2","*pt_bin20*","vpvPlusCMSbeta0p2","*pt_bin21*","vpvPlusCMSbeta0p2","*pt_bin22*","vpvPlusCMSbeta0p2","*pt_bin23*","vpvPlusCMSbeta0p2","*pt_bin24*","vpvPlusCMSbeta0p2")
                     if scenario == "mc_all":
-                        if (len(DEN.pair_newTuneP_probe_pt)==7):
-                            shape = cms.vstring("vpvPlusCMSbeta0p2","*pt_bin0*","vpvPlusExpo","*pt_bin1*","vpvPlusExpo","*pt_bin2*","vpvPlusExpo","*pt_bin3*","vpvPlusExpo","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2")
+                        if (len(DEN.pair_newTuneP_probe_pt)==26):
+                            shape = cms.vstring("vpvPlusCMSbeta0p2","*pt_bin0*","vpvPlusExpo","*pt_bin1*","vpvPlusExpo","*pt_bin2*","vpvPlusExpo","*pt_bin3*","vpvPlusExpo","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2","*pt_bin6*","vpvPlusCMSbeta0p2","*pt_bin7*","vpvPlusCMSbeta0p2","*pt_bin8*","vpvPlusCMSbeta0p2","*pt_bin9*","vpvPlusCMSbeta0p2","*pt_bin10*","vpvPlusCMSbeta0p2","*pt_bin11*","vpvPlusCMSbeta0p2","*pt_bin12*","vpvPlusCMSbeta0p2","*pt_bin13*","vpvPlusCMSbeta0p2","*pt_bin14*","vpvPlusCMSbeta0p2","*pt_bin15*","vpvPlusCMSbeta0p2","*pt_bin16*","vpvPlusCMSbeta0p2","*pt_bin17*","vpvPlusCMSbeta0p2","*pt_bin18*","vpvPlusCMSbeta0p2","*pt_bin19*","vpvPlusCMSbeta0p2","*pt_bin20*","vpvPlusCMSbeta0p2","*pt_bin21*","vpvPlusCMSbeta0p2","*pt_bin22*","vpvPlusCMSbeta0p2","*pt_bin23*","vpvPlusCMSbeta0p2","*pt_bin24*","vpvPlusCMSbeta0p2") 
 #2016                        if (len(DEN.pair_newTuneP_probe_pt)==9):
  #                           shape = cms.vstring("vpvPlusCMSbeta0p2","*pt_bin0*","vpvPlusExpo","*pt_bin1*","vpvPlusExpo","*pt_bin2*","vpvPlusExpo","*pt_bin3*","vpvPlusExpo","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2", "*pt_bin6*","vpvPlusCMSbeta0p2", "*pt_bin7*","vpvPlusCMSbeta0p2", "*pt_bin8*","vpvPlusCMSbeta0p2")
+
                 else:
-                    if (len(DEN.pt)==9):
-                        shape = cms.vstring("vpvPlusCMS","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2","*pt_bin6*","vpvPlusCMSbeta0p2","*pt_bin7*","vpvPlusCMS")
+                    if (len(DEN.pt)==26):
+#                        shape = cms.vstring("vpvPlusCMSbeta0p2","*pt_bin0*","vpvPlusExpo","*pt_bin1*","vpvPlusExpo","*pt_bin2*","vpvPlusExpo")
+                        shape = cms.vstring("vpvPlusCMSbeta0p2")
+                    if scenario == "mc_all":
+                        shape = cms.vstring("vpvPlusCMSbeta0p2")
+
                     if (len(DEN.pt)==7):
                         shape = cms.vstring("vpvPlusCMS","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2")
         elif bgFitFunction == 'CMSshape':
