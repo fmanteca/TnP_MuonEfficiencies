@@ -268,11 +268,23 @@ if sample == "mctest":
         )  
 
 
+if sample == "mcid":
+    process.TnP_MuonID = Template.clone(                                                                                                 
+       InputFileNames = cms.vstring(                            
+            '/eos/cms/store/group/phys_muon/fernanpe/TnPTrees/94X/TnPTree_94X_DYJetsToLL_M50_Madgraph_skimmedID.root'
+            ),                                                                                                                           
+        InputTreeName = cms.string("fitter_tree"),                                                                                       
+        InputDirectoryName = cms.string("tpTree"),                                                                                       
+        OutputFileName = cms.string("TnP_MuonISO_%s.root" % scenario),                                                                   
+        Efficiencies = cms.PSet(),                                                                                                       
+        )  
+
+
 
 if scenario == "mc_all":
     print "Including the weight for MC"
-#   process.TnP_MuonID.WeightVariable = cms.string("weight")
-#   process.TnP_MuonID.Variables.weight = cms.vstring("weight","0","10","")
+   process.TnP_MuonID.WeightVariable = cms.string("weight")
+   process.TnP_MuonID.Variables.weight = cms.vstring("weight","0","10","")
 
 
 BIN = cms.PSet(
@@ -408,14 +420,14 @@ for ID, ALLBINS in ID_BINS:
         if num_.find("Iso4") != -1 or num_.find("Iso3") != -1:
             setattr(module.Efficiencies, ID+"_"+X, cms.PSet(
                 EfficiencyCategoryAndState = cms.vstring(num_,"below"),
-                UnbinnedVariables = cms.vstring(mass_variable),
+                UnbinnedVariables = cms.vstring(mass_variable,"weight"),
                 BinnedVariables = DEN,
                 BinToPDFmap = shape
                 ))
         else:
             setattr(module.Efficiencies, ID+"_"+X, cms.PSet(
                 EfficiencyCategoryAndState = cms.vstring(num_,"above"),
-                UnbinnedVariables = cms.vstring(mass_variable),
+                UnbinnedVariables = cms.vstring(mass_variable,"weight"),
                 BinnedVariables = DEN,
                 BinToPDFmap = shape
                 ))
@@ -424,7 +436,7 @@ for ID, ALLBINS in ID_BINS:
         if num_.find("puppiIso") != -1:
              setattr(module.Efficiencies, ID+"_"+X, cms.PSet(
                     EfficiencyCategoryAndState = cms.vstring(num_,"below"),
-                    UnbinnedVariables = cms.vstring(mass_variable),
+                    UnbinnedVariables = cms.vstring(mass_variable,"weight"),
                         BinnedVariables = DEN,
                     BinToPDFmap = shape
                     ))
