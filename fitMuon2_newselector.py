@@ -213,7 +213,7 @@ if den == "highptid" or den == "trkhighptid": mass_ = "pair_newTuneP_mass"
 
 Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
                           NumCPU = cms.uint32(1),
-    SaveWorkspace = cms.bool(False),
+    SaveWorkspace = cms.bool(True),
 
 
     Variables = cms.PSet(
@@ -294,6 +294,8 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
 
 
 
+
+
 if sample == "mctest":
     process.TnP_MuonID = Template.clone(                                                                                                 
        InputFileNames = cms.vstring(                            
@@ -346,7 +348,6 @@ if sample == "dataidF":
 
 
 
-
 if sample == "dataisoBC":
     process.TnP_MuonISO = Template.clone(                                                                                                 
        InputFileNames = cms.vstring(                            
@@ -383,6 +384,8 @@ if sample == "dataisoF":
         OutputFileName = cms.string("TnP_MuonISO_%s.root" % scenario),                                                                   
         Efficiencies = cms.PSet(),                                                                                                       
         )  
+
+
 
 
 
