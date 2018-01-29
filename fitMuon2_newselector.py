@@ -527,10 +527,10 @@ for ID, ALLBINS in ID_BINS:
                 print 'den is', den 
                 print 'num_ is ', num
                 if den == "highptid" or num == "highptid" or den == "trkhighptid" or num == "trkhighptid":
-                    if (len(DEN.pair_newTuneP_probe_pt)==9):
+                    if (len(DEN.pair_newTuneP_probe_pt)==9 or len(DEN.pair_newTuneP_probe_pt)==8):
                         shape = cms.vstring("vpvPlusCMS","*pt_bin2*","vpvPlusCMSbeta0p2","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2","*pt_bin6*","vpvPlusCMSbeta0p2","*pt_bin7*","vpvPlusCMSbeta0p2")
                     if scenario == "mc_all":
-                        if (len(DEN.pair_newTuneP_probe_pt)==9):
+                        if (len(DEN.pair_newTuneP_probe_pt)==9 or len(DEN.pair_newTuneP_probe_pt)==8):
                             shape = cms.vstring("vpvPlusCMSbeta0p2","*pt_bin0*","vpvPlusExpo","*pt_bin1*","vpvPlusExpo","*pt_bin2*","vpvPlusExpo","*pt_bin3*","vpvPlusExpo","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2","*pt_bin6*","vpvPlusCMSbeta0p2","*pt_bin7*","vpvPlusCMSbeta0p2")
 
                 else:
@@ -539,7 +539,7 @@ for ID, ALLBINS in ID_BINS:
                     if scenario == "mc_all":
                         shape = cms.vstring("vpvPlusCMSbeta0p2")
 
-                    if (len(DEN.pt)==9):
+                    if (len(DEN.pt)==9 or len(DEN.pt)==8):
                         shape = cms.vstring("vpvPlusCMS","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2","*pt_bin6*","vpvPlusCMSbeta0p2","*pt_bin7*","vpvPlusCMSbeta0p2")
         elif bgFitFunction == 'CMSshape':
             if den == "highpt":
