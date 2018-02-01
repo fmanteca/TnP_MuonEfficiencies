@@ -213,7 +213,7 @@ if den == "highptid" or den == "trkhighptid": mass_ = "pair_newTuneP_mass"
 
 Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
                           NumCPU = cms.uint32(1),
-    SaveWorkspace = cms.bool(True),
+    SaveWorkspace = cms.bool(False),
 
 
     Variables = cms.PSet(
@@ -266,6 +266,15 @@ Template = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
         vpvPlusCMS = cms.vstring(
             "Voigtian::signal1(mass, mean1[90,80,100], width[2.495], sigma1[2,1,3])".replace("mass",mass_),
             "Voigtian::signal2(mass, mean2[90,80,100], width,        sigma2[4,3,10])".replace("mass",mass_),
+            "SUM::signal(vFrac[0.8,0.5,1]*signal1, signal2)",
+            "RooCMSShape::backgroundPass(mass, alphaPass[70.,60.,90.], betaPass[0.02, 0.01,0.1], gammaPass[0.001, 0.,0.1], peakPass[90.0])".replace("mass",mass_),
+            "RooCMSShape::backgroundFail(mass, alphaFail[70.,60.,90.], betaFail[0.02, 0.01,0.1], gammaFail[0.001, 0.,0.1], peakPass)".replace("mass",mass_),
+            "efficiency[0.9,0.7,1]",
+            "signalFractionInPassing[0.9]"
+        ),
+        vpvPlusCMS10_20 = cms.vstring(
+            "Voigtian::signal1(mass, mean1[90,80,100], width[2.495], sigma1[1.5,1,2])".replace("mass",mass_),
+            "Voigtian::signal2(mass, mean2[90,80,100], width,        sigma2[4,3,7])".replace("mass",mass_),
             "SUM::signal(vFrac[0.8,0.5,1]*signal1, signal2)",
             "RooCMSShape::backgroundPass(mass, alphaPass[70.,60.,90.], betaPass[0.02, 0.01,0.1], gammaPass[0.001, 0.,0.1], peakPass[90.0])".replace("mass",mass_),
             "RooCMSShape::backgroundFail(mass, alphaFail[70.,60.,90.], betaFail[0.02, 0.01,0.1], gammaFail[0.001, 0.,0.1], peakPass)".replace("mass",mass_),
@@ -531,7 +540,7 @@ for ID, ALLBINS in ID_BINS:
                 print 'num_ is ', num
                 if den == "highptid" or num == "highptid" or den == "trkhighptid" or num == "trkhighptid":
                     if (len(DEN.pair_newTuneP_probe_pt)==9 or len(DEN.pair_newTuneP_probe_pt)==8):
-                        shape = cms.vstring("vpvPlusCMS","*pt_bin2*","vpvPlusCMSbeta0p2","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2","*pt_bin6*","vpvPlusCMSbeta0p2","*pt_bin7*","vpvPlusCMSbeta0p2")
+                        shape = cms.vstring("vpvPlusCMS","*pt_bin0*","vpvPlusCMS10_20","*pt_bin1*","vpvPlusCMS","*pt_bin2*","vpvPlusCMSbeta0p2","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2","*pt_bin6*","vpvPlusCMSbeta0p2","*pt_bin7*","vpvPlusCMSbeta0p2")
                     if scenario == "mc_all":
                         if (len(DEN.pair_newTuneP_probe_pt)==9 or len(DEN.pair_newTuneP_probe_pt)==8):
                             shape = cms.vstring("vpvPlusCMSbeta0p2","*pt_bin0*","vpvPlusExpo","*pt_bin1*","vpvPlusExpo","*pt_bin2*","vpvPlusExpo","*pt_bin3*","vpvPlusExpo","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2","*pt_bin6*","vpvPlusCMSbeta0p2","*pt_bin7*","vpvPlusCMSbeta0p2")
@@ -543,7 +552,7 @@ for ID, ALLBINS in ID_BINS:
                         shape = cms.vstring("vpvPlusCMSbeta0p2")
 
                     if (len(DEN.pt)==9 or len(DEN.pt)==8):
-                        shape = cms.vstring("vpvPlusCMS","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2","*pt_bin6*","vpvPlusCMSbeta0p2","*pt_bin7*","vpvPlusCMSbeta0p2")
+                        shape = cms.vstring("vpvPlusCMS","*pt_bin0*","vpvPlusCMS10_20","*pt_bin1*","vpvPlusCMS","*pt_bin2*","vpvPlusCMSbeta0p2","*pt_bin3*","vpvPlusCMSbeta0p2","*pt_bin4*","vpvPlusCMSbeta0p2","*pt_bin5*","vpvPlusCMSbeta0p2","*pt_bin6*","vpvPlusCMSbeta0p2","*pt_bin7*","vpvPlusCMSbeta0p2")
         elif bgFitFunction == 'CMSshape':
             if den == "highpt":
                 if (len(DEN.pair_newTuneP_probe_pt)==9):
