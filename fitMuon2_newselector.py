@@ -95,6 +95,10 @@ def FillNumDen(num, den):
         process.TnP_MuonID.Categories.TkIsoLoose  = cms.vstring("PasstrkLooseiso", "dummy[pass=1,fail=0]")
         process.TnP_MuonID.Expressions.TkIsoLooseVar = cms.vstring("TkIsoLooseVar", "TkIsoLoose==1", "TkIsoLoose")
         process.TnP_MuonID.Cuts.TrkLooseCutiso  = cms.vstring("TrkLooseCutiso", "TkIsoLooseVar", "0.5")
+    elif num == "tktightiso":
+        process.TnP_MuonID.Categories.TkIsoTight  = cms.vstring("PasstrkTightiso", "dummy[pass=1,fail=0]")
+        process.TnP_MuonID.Expressions.TkIsoTightVar = cms.vstring("TkIsoTightVar", "TkIsoTight==1", "TkIsoTight")
+        process.TnP_MuonID.Cuts.TrkTightCutiso  = cms.vstring("TrkTightCutiso", "TkIsoTightVar", "0.5")
 
         #FOR TRACKER MUONS
     elif num == "trackermuons":
