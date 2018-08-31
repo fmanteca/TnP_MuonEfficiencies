@@ -55,7 +55,7 @@ if __name__ == "__main__":
             SF_MapList = []
             MC_MapList = []
             DATA_MapList = []
-            SFoutputJSONname ='RunBCDEF_%s_%s_%s'%('SF',n, r)
+            SFoutputJSONname ='RunBCDEF_%s_%s_%s_%s'%(NumDic[n],'SF',n, r)
             jSF = JsonMaker(SFoutputJSONname)
             rSF = RootFileMaker(SFoutputJSONname)
             for t in Type:

@@ -258,9 +258,7 @@ class Efficiency:
         bins = range(0,nbins)
         new_nbins = 0
 
-        print 'going to run over the bins'
         for bin_ in bins:
-            print 'bin is', bin_
             x = ROOT.Double(999)
             y = ROOT.Double(999)
             gr.GetPoint(bin_,x,y)
@@ -281,7 +279,6 @@ class Efficiency:
             ybinsL.append(y_low)
             ybinsH.append(y_hi)
             new_nbins += 1
-        print 'finished to run over the bins'
 
         if error_threshold:
             ybinsL_ER= []
@@ -302,14 +299,10 @@ class Efficiency:
                         ER_new_low = 0.5*(ybinsL[l+1]+ybinsL[l-1])
 
                     if ER_new_low > ybins[n]*error_threshold:
-                        print 'ER_new still higher after taking neighbour bin. Taking the min of the two errors'
+                        print '@INFO: ER_new still higher after taking neighbour bin. Taking the min of the two errors'
                         ER_new_low  = min(ybinsH[l], ybinsL[l])
 
-                    print 'new error is', ER_new_low
-
                 else: ER_new_low = ybinsL[l]
-
-                #else: ybinsL_ER.append(ybinsL[l])
 
                 if ybinsH[l] > ybins[n]*error_threshold:
                     ER_new_high = 999
@@ -322,10 +315,8 @@ class Efficiency:
                         ER_new_high = 0.5*(ybinsH[l+1]+ybinsH[l-1])
 
                     if ER_new_high > ybins[n]*error_threshold:
-                        print 'ER_new still higher after taking neighbour bin. Taking the min of the two errors'
+                        print '@INFO: ER_new still higher after taking neighbour bin. Taking the min of the two errors'
                         ER_new_high = min(ybinsH[l], ybinsL[l])
-
-                    print 'new error is',  ER_new_high
 
                 else: ER_new_high = ybinsH[l]
 
@@ -346,10 +337,7 @@ class Efficiency:
         #if xbins_ = []
 
 
-        print 'going to make the new graph'
-        print 'xbins_ is', xbins_
         new_gr = ROOT.TGraphAsymmErrors(new_nbins, xbins_, ybins_, xbinsL_, xbinsH_, ybinsL_, ybinsH_)
-        print 'going to return the new graph'
         return new_gr
 
     def SetNewRange(self, xmin, xmax):

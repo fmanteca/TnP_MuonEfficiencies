@@ -55,17 +55,17 @@ if __name__ == "__main__":
             SF_MapList = []
             MC_MapList = []
             DATA_MapList = []
-            SFoutputJSONname ='RunBCDEF_%s_%s_%s'%('SF',n, r)
+            SFoutputJSONname ='RunGH_%s_%s_%s'%('SF',n, r)
             jSF = JsonMaker(SFoutputJSONname)
             rSF = RootFileMaker(SFoutputJSONname)
             for t in Type:
                 #All the rest will be within the json file
-                outputJSONname ='RunBCDEF_%s_%s_%s_%s'%('Eff',t,n,r)
+                outputJSONname ='RunGH_%s_%s_%s_%s'%('Eff',t,n,r)
                 MapList = []
                 j = JsonMaker(outputJSONname)
                 r_ = RootFileMaker(outputJSONname)
                 for s in NumDic[n]:
-                    file_ = '/eos/cms/store/group/phys_muon/fernanpe/Efficiencies_LegacyReReco2016_final/Efficiency%s_BCDEF_%s/%s_%sid_BCDEF/%s'%(n,r,t.upper(),t,s)
+                    file_ = '/eos/cms/store/group/phys_muon/fernanpe/Efficiencies_LegacyReReco2016_final/Efficiency%s_GH_%s/%s_%sid_GH/%s'%(n,r,t.upper(),t,s)
                     hr = HistoReader('hr')
                     hr.readfile(file_)     
 #                    hr.SetNewRange(20, 120) 

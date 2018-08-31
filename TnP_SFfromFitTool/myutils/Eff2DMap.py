@@ -18,6 +18,9 @@ class Eff2DMap:
         self.xname = None 
         self.yname = None
 
+        #Additional info on the map. e.g. if the map is a sys varition
+        self.Info = None
+
         #If map contains SF values, self.up = self.down and full error propagation has already been done during ratio
         self.sf = False
 
@@ -46,7 +49,7 @@ class Eff2DMap:
             err = -1
         else:
             if not self.sf: 
-                err = (math.sqrt(errup**2 +errdown**2))
+                err = 1./(math.sqrt(2))*(math.sqrt(errup**2 +errdown**2))
             else: 
                 if not errup == errdown:
                     print '@ERROR: SF map but self.down != self.up. Aborting'
@@ -66,19 +69,9 @@ class Eff2DMap:
             for x in range(0, len(self.xbins)):
                 xpar = '%s:[%.2f,%.2f]'%(self.xname, self.xbins[x][0], self.xbins[x][1])
                 nom = self.nominal[y][x]
-                #case of null value
-                #if self.up[y][x] == -1 and self.down[y][x] == -1:
-                #    err = -1
-                #else:
-                #    if not self.sf: 
-                #        err = (math.sqrt(self.up[y][x]**2 +self.down[y][x]**2))
-                #    else: 
-                #        if not self.up[y][x] == self.down[y][x]:
-                #            print '@ERROR: SF map but self.down != self.up. Aborting'
-                #        err = self.up[y][x]
                 err = self.getBinError(self.up[y][x], self.down[y][x])
                 if nom == -1 or err == -1:
-                    data[par_pair][ypar][xpar] = {'value':'null', 'error':'null'}
+                    data[par_pair][ypar][xpar] = {'value':1, 'error':0}
                     print '@INFO: values for', ypar, 'and', xpar, 'are null. The fit is probably empty'
                 else:
                     data[par_pair][ypar][xpar] = {'value':nom, 'error':err}
@@ -113,9 +106,9 @@ class Eff2DMap:
             if x ==  nbinsx -1:
                 xbins.append(self.xbins[x][1])
 
-        print '======================='
-        print 'ybins is', ybins
-        print 'xbins is', xbins
+        #print '======================='
+        #print 'ybins is', ybins
+        #print 'xbins is', xbins
         #print ybins_low
         #print ybins_high
         #print xbins_low
@@ -129,7 +122,7 @@ class Eff2DMap:
         xbins_  = np.array([i for i in xbins],dtype=np.float64)
         ybins_  = np.array([i for i in ybins],dtype=np.float64)
 
-        print 'name is', self.name
+        #print 'name is', self.name
         h2 = ROOT.TH2D('%s_%s_%s'%(self.name, self.xname, self.yname), '%s_%s_%s'%(self.name, self.xname, self.yname), nbinsx, xbins_, nbinsy, ybins_)
         h2.GetXaxis().SetTitle(self.xname)
         h2.GetYaxis().SetTitle(self.yname)
@@ -142,11 +135,18 @@ class Eff2DMap:
                 #print 'nominal value is', self.nominal[y][x]
                 value = self.nominal[y][x]
 
-                # empty bins are not filled
-                if not value == -1:
-                    h2.SetBinContent(x+1, y+1, value)
-                    err = self.getBinError(self.up[y][x], self.down[y][x])
-                    h2.SetBinError(x+1, y+1, err)
+                ## empty bins are not filled
+                #if not value == -1:
+                #    h2.SetBinContent(x+1, y+1, value)
+                #    err = self.getBinError(self.up[y][x], self.down[y][x])
+                #    h2.SetBinError(x+1, y+1, err)
+
+                err = self.getBinError(self.up[y][x], self.down[y][x])
+                if value == -1: 
+                    value = 1
+                    err = 0
+                h2.SetBinContent(x+1, y+1, value)
+                h2.SetBinError(x+1, y+1, err)
                     
         #
         #Uncomment below for debug 
@@ -167,6 +167,82 @@ class Eff2DMap:
         h2.SetOption("COLZTEXTE")
         return h2
 
+    def evalSysUncertainties(self, mapList, prescription = 'max'):
+        '''Replace the errors in the 2D map by the systematic uncertainties.'''
+        #self: map whose stat. error will be replaced by the systematic uncertainties
+        #mapList: list of all the systematic variations. Nominal values will be taken into account to derive systematic uncertainty on the "self" map
+        #prescription: how to estimate the systematic uncertainties from all the variaions
+            # -max: take the maximum up/down variation for all the bins
+
+        newMap = Eff2DMap(self.name)
+        newMap.xbins = self.xbins
+        newMap.ybins = self.ybins
+        newMap.nominal = self.nominal
+        newMap.xname = self.xname
+        newMap.yname = self.yname
+        newMap.Info = self.Info
+
+       # start loop over the bins
+
+
+        up_new = []
+        down_new = []
+        for y in range(0, len(self.ybins)):
+            up_new.append([])
+            down_new.append([])
+            for x in range(0, len(self.xbins)):
+                # will now loop over all the other maps
+                up_sys = []
+                down_sys = []
+                nominal_value = self.getBinMap(x,y)
+                for map in mapList:
+                    #print 'value is', map.getBinMap(x,y)
+                    sys_error = map.getBinMap(x,y) -  nominal_value
+                    if sys_error >= 0:
+                        up_sys.append(sys_error)
+                    else:
+                        down_sys.append(sys_error)
+
+                sys_var = up_sys + down_sys
+                if prescription == 'max':
+                    checked_sys_value = False
+
+                    # check if sys varation is not broken (too large)
+                    removed_sys = False
+                    while not checked_sys_value:
+                        checked_sys_value = True
+                        up = max(sys_var)
+                        down = min(sys_var)
+                        #if abs(up) > 0.05:
+                        #    if not removed_sys:
+                        #        print '-----------------------------'
+                        #        removed_sys = True
+                        #    map_broken_sys = mapList[sys_var.index(up)]
+                        #    print 'WARNING: a large up sys variation (%f) is oberved in bin x:%i, y:%i in map %s for sys %s. Please check sys variation there' %(up, x,y, map_broken_sys.name, map_broken_sys.Info)
+                        #    sys_var.remove(up)
+                        #if abs(down) > 0.05:
+                        #    if not removed_sys:
+                        #        print '-----------------------------'
+                        #        removed_sys = True
+                        #    map_broken_sys = mapList[sys_var.index(down)]
+                        #    print 'WARNING: a large down sys variation (%f) is oberved in bin x:%i, y:%i in map %s for sys %s. Please check sys variation there' %(down, x,y, map_broken_sys.name, map_broken_sys.Info)
+                        #    sys_var.remove(down)
+                        #else: checked_sys_value = True
+
+                up_new[y].append(up)
+                down_new[y].append(down)
+
+        newMap.up = up_new
+        newMap.down = down_new
+
+        return newMap
+
+    def getBinMap(self, binx, biny):
+        '''return nominal value from a map'''
+        return self.nominal[biny][binx]
+
+
+
     def divideMap(self, effmap):
         '''Return a new map, that is sefl divided by effmap'''
         if self.xbins != effmap.xbins:
@@ -184,6 +260,7 @@ class Eff2DMap:
         ratioMap.ybins = self.ybins
         ratioMap.xname = self.xname
         ratioMap.yname = self.yname
+        ratioMap.Info = self.Info
 
         nominal = []
         up = []

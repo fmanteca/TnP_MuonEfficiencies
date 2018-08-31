@@ -763,7 +763,7 @@ class HistoPloter:
 
     def xParDic(self, par):
         '''Maps x parameter to propet latex expression (for plots)'''
-        dic = {'pt':'muon p_{T} [GeV]','pair_newTuneP_probe_pt':'muon tune p_{T}'}
+        dic = {'pt':'muon p_{T} [GeV]','pair_newTuneP_probe_pt':'muon tune p_{T}','tag_pt':'muon 2 p_{T}'}
         return dic[par]
 
     def yParDic(self, par):
@@ -785,7 +785,6 @@ class HistoPloter:
                 'SoftID':'Soft Id',
                 'TightID':'Tight Id', 
                 'TightIDandIPCut':'Tight Id',
-                'genTracks':'',
                 'TightRelIso':'Tight Iso',
                 'LooseRelIso':'Loose Iso',
                 'TightRelTkIso':'Tight Trk Iso',
@@ -795,6 +794,12 @@ class HistoPloter:
                 'IsoMu27':'IsoMu27',
                 'hlt_Mu17Mu8_leg17':'IsoMu17',
                 'LooseIDnISO':'Loose ID+ISO',
+                'hlt_Mu17Mu8_leg8':'leg 8',
+                'hlt_Mu17Mu8_leg8_tag17':'leg 8',
+                'hlt_Mu17Mu8_leg17':'leg 17',
+                'hlt_Mu17Mu8_leg17_tag8':'leg 17',
+                'dZ':'dZ',
+                'genTracks':'',
                 'empty':''
                 }
 

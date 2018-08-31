@@ -183,10 +183,11 @@ class HistoReader:
                     #################
                     ##BinName = subkey.GetName()
                 self.orderFitHisto()
-                print '-----------'
-                print 'checking efficiency bins'
+                #print '-----------'
+                #print 'checking efficiency bins'
                 self.getGraphValue(hEff)
                 self.EffList.append(Efficiency(self.rawname, self.type_,  effkey, hEff, self.xpar, self.ypars, self.ypar, self.hpassing, self.funcpassing, self.hfailing, self.funcfailing, self.fitResult, self.rooworksp))
+                #print 'yeah'
             if len(AllEffList) == 0:
                 # try at least to recover the workspaces
                 for subkey in directory.GetListOfKeys():
@@ -209,6 +210,8 @@ class HistoReader:
         if not self.ylist == None:
             self.Make2DMap()
         file.Close()
+        #print 'closing'
+
 
     def getBinNumber(self, s):
         binlist = []
@@ -388,7 +391,7 @@ class HistoReader:
 
         eff2D.xbins = sorted(xbins_)
 
-        print 'eff2D.xbins is', eff2D.xbins
+        #print 'eff2D.xbins is', eff2D.xbins
         #sys.exit()
         #
         #eff2D.xbins = []
@@ -436,7 +439,7 @@ class HistoReader:
         #if len(xbins_new) >= len(eff2D.xbins):
         #    eff2D.xbins = xbins_new
 
-        print eff2D.xbins
+        #print eff2D.xbins
         #sys.exit()
 
         #sys.exit()
@@ -445,6 +448,7 @@ class HistoReader:
         eff2D.yname = self.yparname
         #self.CleanMissingValues(eff2D)
 
+        eff2D.Info = self.Info
         self.eff2D = eff2D
 
     #def CleanMissingValues(self, Map2D):
